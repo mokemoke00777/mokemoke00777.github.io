@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>もけもけさんのイベント成績 | ポケモンカードゲーム プレイヤーズクラブ</title>
+    <link href="https://players.pokemon-card.com/css/app.44676e0f.css" rel="stylesheet">
+    <style>
+        /* スタイルを簡略化して記述 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-nav-pc ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .header-nav-pc li a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .mypage-wrapper {
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .player-info .name {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .player-status .ps-table {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .c-title-page {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .eventResult-select {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .eventResult-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .eventResult-table-title-pc {
+            display: flex;
+            background-color: #eee;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .eventResult-table-row {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            align-items: center;
+        }
+        
+        .eventResult-table-eventTitle,
+        .eventResult-table-rank,
+        .eventResult-table-point,
+        .eventResult-table-deck {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .eventResult-table-rank .number {
+            font-weight: bold;
+            color: #0baf74;
+        }
+
+        .eventResult-table-deck {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header-nav-pc, .mypage-right {
+                display: none;
+            }
+            .eventResult-table-title-pc {
+                display: none;
+            }
+            .eventResult-table-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" data-v-app="">
+        <div class="app wrapper" data-v-7c438284="">
+            <header class="header" data-v-eb13fb9c="">
+                <div class="header-container" data-v-eb13fb9c="">
+                    <div class="header-nav-logo" data-v-eb13fb9c="">
+                        <a href="https://www.pokemon-card.com" data-v-eb13fb9c="">
+                            <h1 data-v-eb13fb9c="">
+                                <img src="https://players.pokemon-card.com/img/logo.6140df9a.svg" alt="site logo" data-v-eb13fb9c="">
+                            </h1>
+                        </a>
+                    </div>
+                    <nav class="header-nav-pc u-display-header-pc" data-v-eb13fb9c="">
+                        <ul data-v-eb13fb9c="">
+                            <li><a href="https://www.pokemon-card.com/about/">はじめての方へ</a></li>
+                            <li><a href="https://www.pokemon-card.com/howtoplay/">あそびかた</a></li>
+                            <li><a href="https://www.pokemon-card.com/rules/">大会ルール</a></li>
+                            <li><a href="https://www.pokemon-card.com/products/">商品情報</a></li>
+                            <li><a href="https://map.pokemon-card.com/" target="_blank">お店検索</a></li>
+                            <li><a href="https://www.pokemon-card.com/card-search">カード検索</a></li>
+                            <li><a href="https://www.pokemon-card.com/deck/">デッキ構築</a></li>
+                            <li><button>イベント</button></li>
+                            <li><a href="/mypage"><i class="icon-my_page"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <main data-v-7c438284="">
+                <section class="c-content u-display-pc" data-v-748ade0c="">
+                    <nav aria-label="breadcrumb" class="breadcrumb" data-v-748ade0c="">
+                        <ol class="breadcrumb-list" data-v-748ade0c="">
+                            <li class="breadcrumb-item" data-v-748ade0c=""><a href="https://www.pokemon-card.com" data-v-748ade0c="">トップ</a></li>
+                            <li class="breadcrumb-item" data-v-748ade0c=""><a href="/mypage" class="" data-v-748ade0c="">マイページ</a></li>
+                            <li class="breadcrumb-item" data-v-748ade0c="">イベント成績</li>
+                        </ol>
+                    </nav>
+                </section>
+                <div class="players-logo" data-v-08b58d6f="">
+                    <img src="https://players.pokemon-card.com/img/players_logo2x.451e3ada.png" data-v-08b58d6f="">
+                </div>
+                <h1 class="c-title c-title-page" data-v-08b58d6f="">イベント成績</h1>
+                <div class="c-content eventResult-select margin" data-v-4808c641="">
+                    <div class="c-input c-input-select" data-v-4808c641="">
+                        <select id="select1" data-v-4808c641="">
+                            <option data-v-4808c641="">すべて</option>
+                            <option value="2025" data-v-4808c641="">2025/01/01〜2025/12/31</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="c-content c-content-wide-sp" data-v-6f172599="">
+                    <div class="eventResult-table" data-v-6f172599="">
+                        <div class="eventResult-table-title-pc" data-v-6f172599="">
+                            <div class="header-title event" data-v-6f172599=""> イベント名 </div>
+                            <div class="header-title rank" data-v-6f172599=""> 成績 </div>
+                            <div class="header-title point" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                            <div class="header-title deck" data-v-6f172599=""> 参加デッキ </div>
+                        </div>
+                        <div class="eventResult-table-row" data-v-6f172599="">
+                            <div class="eventResult-table-eventTitle" data-v-6f172599="">
+                                <div class="eventResult-table-title-top" data-v-6f172599="">
+                                    <span class="title" data-v-6f172599="">【25/9】ポケモンカードジム　ジムバトル</span><span class="date" data-v-6f172599="">2025/09/02（火）</span>
+                                </div>
+                                <div class="eventResult-table-title-bottom" data-v-6f172599="">
+                                    <span class="area" data-v-6f172599="">東京都</span><a href="#" class="organizer" data-v-6f172599="">アメニティードリーム　蒲田店</a>
+                                    <div class="myGym" data-v-6f172599="">
+                                        <button class="myGym-button registerd" data-v-6f172599=""> マイジム登録済み </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-rank" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 成績 </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="" data-v-6f172599=""><span class="number" data-v-6f172599="">5～8</span> 位</span><span data-v-6f172599="">（11人中）</span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-point" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="point" data-v-6f172599=""><span class="point-number" data-v-6f172599="">―</span></span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-deck" data-v-6f172599="">
+                                </div>
+                        </div>
+                        <div class="eventResult-table-row" data-v-6f172599="">
+                            <div class="eventResult-table-eventTitle" data-v-6f172599="">
+                                <div class="eventResult-table-title-top" data-v-6f172599="">
+                                    <span class="title" data-v-6f172599="">【25/8】ポケモンカードジム　ジムバトル</span><span class="date" data-v-6f172599="">2025/08/26（火）</span>
+                                </div>
+                                <div class="eventResult-table-title-bottom" data-v-6f172599="">
+                                    <span class="area" data-v-6f172599="">東京都</span><a href="#" class="organizer" data-v-6f172599="">トレカル秋葉原駅前店</a>
+                                    <div class="myGym" data-v-6f172599="">
+                                        <button class="myGym-button" data-v-6f172599=""> マイジムに登録する </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-rank" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 成績 </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span data-v-6f172599="">参加</span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-point" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="point" data-v-6f172599=""><span class="point-number" data-v-6f172599="">―</span></span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-deck" data-v-6f172599="">
+                                </div>
+                        </div>
+                        <div class="eventResult-table-row" data-v-6f172599="">
+                            <div class="eventResult-table-eventTitle" data-v-6f172599="">
+                                <div class="eventResult-table-title-top" data-v-6f172599="">
+                                    <span class="title" data-v-6f172599="">【25/8】ポケモンカードジム　ジムバトル</span><span class="date" data-v-6f172599="">2025/08/18（月）</span>
+                                </div>
+                                <div class="eventResult-table-title-bottom" data-v-6f172599="">
+                                    <span class="area" data-v-6f172599="">東京都</span><a href="#" class="organizer" data-v-6f172599="">カードshop　すぱいらる</a>
+                                    <div class="myGym" data-v-6f172599="">
+                                        <button class="myGym-button" data-v-6f172599=""> マイジムに登録する </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-rank" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 成績 </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="rank-1" data-v-6f172599=""><span class="number" data-v-6f172599="">1</span> 位</span><span data-v-6f172599="">（9人中）</span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-point" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="point" data-v-6f172599=""><span class="point-number" data-v-6f172599="">―</span></span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-deck" data-v-6f172599="">
+                                </div>
+                        </div>
+                        <div class="eventResult-table-row" data-v-6f172599="">
+                            <div class="eventResult-table-eventTitle" data-v-6f172599="">
+                                <div class="eventResult-table-title-top" data-v-6f172599="">
+                                    <a href="#">
+                                        <span class="title" data-v-6f172599="">ビクティニBWR争奪戦【後期】</span><span class="date" data-v-6f172599="">2025/08/17（日）</span>
+                                    </a>
+                                </div>
+                                <div class="eventResult-table-title-bottom" data-v-6f172599="">
+                                    <span class="area" data-v-6f172599="">神奈川県</span><a href="#" class="organizer" data-v-6f172599="">チェルモサード</a>
+                                    <div class="myGym" data-v-6f172599="">
+                                        <button class="myGym-button" data-v-6f172599=""> マイジムに登録する </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-rank" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 成績 </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span data-v-6f172599="">参加</span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-point" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="point" data-v-6f172599=""><span class="point-number" data-v-6f172599="">―</span></span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-deck" data-v-6f172599="">
+                                </div>
+                        </div>
+                        <div class="eventResult-table-row" data-v-6f172599="">
+                            <div class="eventResult-table-eventTitle" data-v-6f172599="">
+                                <div class="eventResult-table-title-top" data-v-6f172599="">
+                                    <span class="title" data-v-6f172599="">【25/8】ポケモンカードジム　ジムバトル</span><span class="date" data-v-6f172599="">2025/08/13（水）</span>
+                                </div>
+                                <div class="eventResult-table-title-bottom" data-v-6f172599="">
+                                    <span class="area" data-v-6f172599="">東京都</span><a href="#" class="organizer" data-v-6f172599="">カードshop　すぱいらる</a>
+                                    <div class="myGym" data-v-6f172599="">
+                                        <button class="myGym-button" data-v-6f172599=""> マイジムに登録する </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-rank" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 成績 </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span data-v-6f172599="">参加</span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-point" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="point" data-v-6f172599=""><span class="point-number" data-v-6f172599="">―</span></span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-deck" data-v-6f172599="">
+                                </div>
+                        </div>
+                        <div class="eventResult-table-row" data-v-6f172599="">
+                            <div class="eventResult-table-eventTitle" data-v-6f172599="">
+                                <div class="eventResult-table-title-top" data-v-6f172599="">
+                                    <span class="title" data-v-6f172599="">【25/7】ポケモンカードジム　ジムバトル</span><span class="date" data-v-6f172599="">2025/07/24（木）</span>
+                                </div>
+                                <div class="eventResult-table-title-bottom" data-v-6f172599="">
+                                    <span class="area" data-v-6f172599="">東京都</span><a href="#" class="organizer" data-v-6f172599="">アメニティードリーム　池袋パワー9店</a>
+                                    <div class="myGym" data-v-6f172599="">
+                                        <button class="myGym-button" data-v-6f172599=""> マイジムに登録する </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-rank" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 成績 </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="rank-3" data-v-6f172599=""><span class="number" data-v-6f172599="">3～4</span> 位</span><span data-v-6f172599="">（13人中）</span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-point" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="point" data-v-6f172599=""><span class="point-number" data-v-6f172599="">―</span></span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-deck" data-v-6f172599="">
+                                </div>
+                        </div>
+                        <div class="eventResult-table-row" data-v-6f172599="">
+                            <div class="eventResult-table-eventTitle" data-v-6f172599="">
+                                <div class="eventResult-table-title-top" data-v-6f172599="">
+                                    <span class="title" data-v-6f172599="">【25/7】ポケモンカードジム　ジムバトル</span><span class="date" data-v-6f172599="">2025/07/22（火）</span>
+                                </div>
+                                <div class="eventResult-table-title-bottom" data-v-6f172599="">
+                                    <span class="area" data-v-6f172599="">東京都</span><a href="#" class="organizer" data-v-6f172599="">アメニティードリーム　蒲田店</a>
+                                    <div class="myGym" data-v-6f172599="">
+                                        <button class="myGym-button registerd" data-v-6f172599=""> マイジム登録済み </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-rank" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 成績 </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="rank-3" data-v-6f172599=""><span class="number" data-v-6f172599="">3～4</span> 位</span><span data-v-6f172599="">（11人中）</span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-point" data-v-6f172599="">
+                                <div class="eventResult-table-title" data-v-6f172599=""> 獲得チャンピオン<br data-v-6f172599=""> シップポイント </div>
+                                <div class="eventResult-table-content" data-v-6f172599="">
+                                    <span class="point" data-v-6f172599=""><span class="point-number" data-v-6f172599="">―</span></span>
+                                </div>
+                            </div>
+                            <div class="eventResult-table-deck" data-v-6f172599="">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
